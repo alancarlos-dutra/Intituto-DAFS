@@ -169,7 +169,7 @@ body {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-bottom: 1.5rem;
 }
@@ -306,7 +306,7 @@ body {
 
 .eventos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.8rem;
     margin: 2rem 0 2.5rem;
 }
@@ -694,7 +694,17 @@ body { background: #F2F2F2; padding: 0; font-family: 'Inter', 'Segoe UI', sans-s
 /* Espaços visuais dos trabalhos */
 .cards-grid { grid-template-columns: repeat(2, 1fr); }
 .card { align-items: stretch; display: grid; grid-template-columns: minmax(140px, .8fr) 1fr; min-height: 210px; padding: 1.5rem 1.5rem 1.5rem 0; }
-.card-imagem { background: linear-gradient(135deg, rgba(5, 17, 242, .1), rgba(53, 208, 242, .28)); border: 1px solid rgba(5, 17, 242, .25); display: block; height: 175px; min-height: 175px; object-fit: cover; width: 100%; }
+.card-galeria { background: linear-gradient(135deg, rgba(5, 17, 242, .1), rgba(53, 208, 242, .28)); border: 1px solid rgba(5, 17, 242, .25); height: 175px; min-height: 175px; overflow: hidden; position: relative; width: 100%; }
+.card-imagem { animation: trocar-foto 16s infinite ease-in-out; border: 0; display: block; height: 100%; object-fit: cover; opacity: 0; position: absolute; transform: scale(1.04); inset: 0; width: 100%; }
+.card-imagem:nth-child(1) { animation-delay: 0s; opacity: 1; }
+.card-imagem:nth-child(2) { animation-delay: 4s; }
+.card-imagem:nth-child(3) { animation-delay: 8s; }
+.card-imagem:nth-child(4) { animation-delay: 12s; }
+@keyframes trocar-foto {
+    0% { opacity: 0; transform: scale(1.04); }
+    5%, 15% { opacity: 1; transform: scale(1); }
+    25%, 100% { opacity: 0; transform: scale(1); }
+}
 .card-conteudo { display: flex; flex-direction: column; padding: .25rem 0 .25rem 1.5rem; }
 .card-conteudo h3 { margin-bottom: .5rem; }
 .card-conteudo p { flex: 1; grid-column: auto; margin-bottom: 1rem; }
@@ -704,13 +714,13 @@ body { background: #F2F2F2; padding: 0; font-family: 'Inter', 'Segoe UI', sans-s
 @media (max-width: 780px) {
     .cards-grid { grid-template-columns: 1fr; }
     .card { grid-template-columns: minmax(120px, .75fr) 1fr; min-height: 175px; }
-    .card-imagem { min-height: 145px; }
+    .card-galeria { height: 145px; min-height: 145px; }
     .card-conteudo { padding-left: 1rem; }
 }
 
 @media (max-width: 480px) {
     .card { grid-template-columns: 110px 1fr; }
-    .card-imagem { min-height: 140px; }
+    .card-galeria { height: 140px; min-height: 140px; }
 }
 
 @media (max-width: 600px) {
@@ -728,6 +738,11 @@ body { background: #F2F2F2; padding: 0; font-family: 'Inter', 'Segoe UI', sans-s
     .card-conteudo h3 { overflow-wrap: anywhere; }
     .card-tag { overflow-wrap: anywhere; }
     .publicos-lista span { max-width: 100%; overflow-wrap: anywhere; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-imagem { animation: none; }
+    .card-imagem:not(:first-child) { display: none; }
 }
 
 /* Públicos atendidos */
