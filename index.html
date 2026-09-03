@@ -23,8 +23,14 @@
                 </div>
             </div>
 
+            <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
             <!-- MENU -->
-            <nav class="menu">
+            <nav class="menu" id="menu-principal">
                 <a href="#home">Home</a>
                 <a href="#sobre">O instituto</a>
                 <a href="#projetos">Portal da Transparência</a>
@@ -174,5 +180,26 @@
 
     </div>
     <!-- fim container -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+
+        function fecharMenu() {
+            menu.classList.remove('menu-aberto');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Abrir menu');
+        }
+
+        menuToggle.addEventListener('click', () => {
+            const aberto = menu.classList.toggle('menu-aberto');
+            menuToggle.setAttribute('aria-expanded', String(aberto));
+            menuToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+        });
+
+        menu.querySelectorAll('a').forEach(link => link.addEventListener('click', fecharMenu));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') fecharMenu();
+        });
+    </script>
 </body>
 </html>
