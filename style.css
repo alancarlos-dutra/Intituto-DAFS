@@ -712,6 +712,23 @@ body { background: #F2F2F2; padding: 0; font-family: 'Inter', 'Segoe UI', sans-s
     .card-imagem { min-height: 140px; }
 }
 
+@media (max-width: 600px) {
+    .container { max-width: 100%; overflow: hidden; padding-left: 1rem; padding-right: 1rem; }
+    .container::before { line-height: 1.4; white-space: normal; }
+    .menu { align-items: stretch; display: grid; gap: .35rem .8rem; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+    .menu a { min-width: 0; }
+    .menu-contato { grid-column: 1 / -1; margin-top: .35rem; }
+    .hero { padding-top: 3rem; }
+    .hero-conteudo h1 { font-size: clamp(2.25rem, 11vw, 2.8rem); }
+    .hero-imagem { margin-right: 0; width: calc(100% - .5rem); }
+    .hero-imagem::after { left: 8px; top: 8px; }
+    .card { grid-template-columns: minmax(105px, .7fr) 1fr; padding-right: 0; }
+    .card-conteudo { min-width: 0; }
+    .card-conteudo h3 { overflow-wrap: anywhere; }
+    .card-tag { overflow-wrap: anywhere; }
+    .publicos-lista span { max-width: 100%; overflow-wrap: anywhere; }
+}
+
 /* Públicos atendidos */
 .publicos { border-bottom: 1px solid var(--linha); border-top: 1px solid var(--linha); display: grid; gap: 5rem; grid-template-columns: .85fr 1.15fr; padding: 6rem 0; }
 .publicos-cabecalho h2 { color: var(--marinho); font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.15; margin-bottom: 1.3rem; }
